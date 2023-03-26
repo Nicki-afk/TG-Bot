@@ -275,6 +275,48 @@ public class FileManager {
     }
 
 
+    // add to signature logo company. Think ...
+    public boolean saveTheFeedbackFile(File file , String nameTheCompany){
+
+
+        System.out.println("\nSTART SAVE FEEDBACK_FILE OPERATION ... ");
+
+        if(file == null){
+
+            System.err.println("FILE IS NULL ERROR BY SAVING : " + nameTheCompany);
+            return false;
+        }
+
+
+        try{
+            String fullPathSavingFile = this.baseMediaFilesPath.concat(file.getName());
+
+
+
+
+            if(!new File(fullPathSavingFile).exists()){
+
+                if(!new File(fullPathSavingFile).createNewFile()){
+                    System.out.println("ERROR BY CREATING FILE : " + fullPathSavingFile);
+                }
+
+                System.out.println("FILE IS CREATE/SAVE SUCCESSFUL : " + fullPathSavingFile);
+
+                return true;
+            }
+
+            System.out.println("ERROR SAVING FILE , FILE ALREADY EXIST :  " + fullPathSavingFile);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        return false;
+
+    }
+
+
 
     // Тип файла указывается для того что бы скорктировать путь , добавить files/ + nameFile
     public boolean destroy(String nameFile , TypeFile typeFile){
