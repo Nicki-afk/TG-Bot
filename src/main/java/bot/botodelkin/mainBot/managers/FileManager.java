@@ -229,6 +229,53 @@ public class FileManager {
 
 
 
+    public boolean saveTheMediaFile(File file){
+
+
+        System.out.println("\nSTART SAVE MEDIA_FILE OPERATION ... ");
+
+        if(file == null){
+
+            System.err.println("IMPOSSIBLE SAVE FILE , FILE IS NULL ");
+
+
+            return false;
+
+        }
+
+        try {
+
+            String fullPathSavingFile = this.baseMediaFilesPath.concat(file.getName());
+
+
+
+            if (!new File(fullPathSavingFile).exists()) {
+
+                if (!new File(fullPathSavingFile).createNewFile()) {
+                    System.err.println("FILE DON'T SAVE SUCCESSFUL : " + fullPathSavingFile);
+                }
+
+
+                System.out.println("FILE CREATE SUCCESSFUL ! : " + fullPathSavingFile);
+                return true;
+            }
+
+            // OTHER LOGIC ...
+
+            System.err.println("ERROR , FILE ALREADY EXIST  : " + fullPathSavingFile);
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+
+
+    }
+
+
+
     // Тип файла указывается для того что бы скорктировать путь , добавить files/ + nameFile
     public boolean destroy(String nameFile , TypeFile typeFile){
 
